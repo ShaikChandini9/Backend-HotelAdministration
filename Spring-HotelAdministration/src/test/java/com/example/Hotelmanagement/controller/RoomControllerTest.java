@@ -50,4 +50,35 @@ public class RoomControllerTest {
         ResponseEntity<List<Room>> responseEntity=roomController.gelAllRooms();
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
     }
+
+    @Test
+    public void getRoomByIdTest(){
+
+        Long roomid=12L;
+        Room room=new Room();
+        when(roomService.getRoomById(roomid)).thenReturn(room);
+        ResponseEntity responseEntity=roomController.getRoomById(12L);
+        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void updateTest(){
+
+        roomDto.setId(123L);
+        roomDto.setRoomname("suite");
+        roomDto.setRoomtype("deluxe");
+        roomDto.setImg("img");
+        roomDto.setPrice(100);
+        doNothing().when(roomService).update(roomDto);
+        ResponseEntity responseEntity=roomController.update(roomDto);
+        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void deleteTest(){
+
+        doNothing().when(roomService).delete(12L);
+        ResponseEntity responseEntity=roomController.delete(12L);
+        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+    }
 }
