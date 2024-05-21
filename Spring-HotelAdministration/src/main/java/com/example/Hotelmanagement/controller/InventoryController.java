@@ -61,5 +61,5 @@ public class InventoryController {
         String reorderMessage = stockservice.getReorderMessage(stockId);
         return ResponseEntity.ok(reorderMessage);
     }
-    
+
 }

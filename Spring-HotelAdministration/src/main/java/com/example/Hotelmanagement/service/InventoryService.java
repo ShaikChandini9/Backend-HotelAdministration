@@ -33,22 +33,35 @@ public class InventoryService {
 		Inventory inventory=stockrepository.findByItemname(itemname);
 		int currentquantity=inventory.getPreviouscount();
 		int updatecount=currentquantity+quantity;
-		//inventory.setQuantity(updatecount);
 		inventory.setUpdatequantity(updatecount);
 		stockrepository.save(inventory);
 	}
 	
-	 public void updateStock(InventoryRequest stockRequest) {
-		    Long stockId = stockRequest.getStockid();
-	        Integer usedQuantity = stockRequest.getUsedquantity();
-	        Inventory stock = stockrepository.findBystockid(stockId);
-	        if (stock != null) {
-	            stock.setUsedquantity(usedQuantity);
-	            stockrepository.save(stock);
-	        } else {
-	            throw new IllegalArgumentException("Stock not found with id: " + stockId);
-	        }
-	    }
+//	 public void updateStock(InventoryRequest stockRequest) {
+//		    Long stockId = stockRequest.getStockid();
+//	        Integer usedQuantity = stockRequest.getUsedquantity();
+//	        Inventory stock = stockrepository.findBystockid(stockId);
+//	        if (stock != null) {
+//	            stock.setUsedquantity(usedQuantity);
+//	            stockrepository.save(stock);
+//	        } else {
+//	            throw new IllegalArgumentException("Stock not found with id: " + stockId);
+//	        }
+//	    }
+		public void updateStock(InventoryRequest stockRequest) {
+			Long stockId = stockRequest.getStockid();
+			Integer additionalUsedQuantity = stockRequest.getUsedquantity();
+
+			Inventory stock = stockrepository.findBystockid(stockId);
+			if (stock != null) {
+				Integer currentUsedQuantity = stock.getUsedquantity();
+				Integer updatedUsedQuantity = currentUsedQuantity + additionalUsedQuantity;
+				stock.setUsedquantity(updatedUsedQuantity);
+				stockrepository.save(stock);
+			} else {
+				throw new IllegalArgumentException("Stock not found with id: " + stockId);
+			}
+		}
 
 	 	public void getStockCount(Long stockId) {
 	        Inventory stock = stockrepository.findById(stockId)
@@ -61,7 +74,7 @@ public class InventoryService {
 	        stockrepository.save(stock);
 	    }
 	 
-	 public String getReorderMessage(Long stockId) {
+	 	public String getReorderMessage(Long stockId) {
 
 		    final int neededcount= 70;
 		    final String message = "Stock reorder needed for item ID %d. Current stock level is %d.";
