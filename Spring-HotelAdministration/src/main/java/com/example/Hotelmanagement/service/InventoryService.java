@@ -28,14 +28,14 @@ public class InventoryService {
 		return stockrepository.findAll();
 	}
 	
-//	public void addstock(String itemname,int quantity) {
-//
-//		Inventory inventory=stockrepository.findByItemname(itemname);
-//		int currentquantity=inventory.getQuantity();
-//		int updatecount=currentquantity+quantity;
-//		inventory.setQuantity(updatecount);
-//		stockrepository.save(inventory);
-//	}
+	public void addingstockqunantity(String itemname,int quantity) {
+
+		Inventory inventory=stockrepository.findByItemname(itemname);
+		int currentquantity=inventory.getQuantity();
+		int updatecount=currentquantity+quantity;
+		inventory.setQuantity(updatecount);
+		stockrepository.save(inventory);
+	}
 	
 	 public void updateStock(InventoryRequest stockRequest) {
 		    Long stockId = stockRequest.getStockid();
