@@ -37,62 +37,51 @@ public class InventoryService {
 		stockrepository.save(inventory);
 	}
 	
-//	 public void updateStock(InventoryRequest stockRequest) {
-//		    Long stockId = stockRequest.getStockid();
-//	        Integer usedQuantity = stockRequest.getUsedquantity();
-//	        Inventory stock = stockrepository.findBystockid(stockId);
-//	        if (stock != null) {
-//	            stock.setUsedquantity(usedQuantity);
-//	            stockrepository.save(stock);
-//	        } else {
-//	            throw new IllegalArgumentException("Stock not found with id: " + stockId);
-//	        }
-//	    }
-		public void updateStock(InventoryRequest stockRequest) {
-			Long stockId = stockRequest.getStockid();
-			Integer additionalUsedQuantity = stockRequest.getUsedquantity();
+	public void updateStock(InventoryRequest stockRequest) {
+		Long stockId = stockRequest.getStockid();
+		Integer additionalUsedQuantity = stockRequest.getUsedquantity();
 
-			Inventory stock = stockrepository.findBystockid(stockId);
-			if (stock != null) {
-				Integer currentUsedQuantity = stock.getUsedquantity();
-				Integer updatedUsedQuantity = currentUsedQuantity + additionalUsedQuantity;
-				stock.setUsedquantity(updatedUsedQuantity);
-				stockrepository.save(stock);
-			} else {
-				throw new IllegalArgumentException("Stock not found with id: " + stockId);
-			}
+		Inventory stock = stockrepository.findBystockid(stockId);
+		if (stock != null) {
+			Integer currentUsedQuantity = stock.getUsedquantity();
+			Integer updatedUsedQuantity = currentUsedQuantity + additionalUsedQuantity;
+			stock.setUsedquantity(updatedUsedQuantity);
+			stockrepository.save(stock);
+		} else {
+			throw new IllegalArgumentException("Stock not found with id: " + stockId);
 		}
+	}
 
-	 	public void getStockCount(Long stockId) {
-	        Inventory stock = stockrepository.findById(stockId)
+	public void getStockCount(Long stockId) {
+		Inventory stock = stockrepository.findById(stockId)
 	                .orElseThrow(() -> new IllegalArgumentException("Stock not found with id: " + stockId));
 
-	        int Quantity = stock.getPreviouscount();
-	        int usedQuantity = stock.getUsedquantity();
-	        int totalQuantity=Quantity - usedQuantity;
-	        stock.setTotalquantity(totalQuantity);
-	        stockrepository.save(stock);
-	    }
+		int Quantity = stock.getPreviouscount();
+		int usedQuantity = stock.getUsedquantity();
+		int totalQuantity=Quantity - usedQuantity;
+		stock.setTotalquantity(totalQuantity);
+		stockrepository.save(stock);
+	}
 	 
-	 	public String getReorderMessage(Long stockId) {
+	public String getReorderMessage(Long stockId) {
 
-		    final int neededcount= 70;
-		    final String message = "Stock reorder needed for item ID %d. Current stock level is %d.";
+		final int neededcount= 70;
+		final String message = "Stock reorder needed for item ID %d. Current stock level is %d.";
 
-	        Inventory stock = stockrepository.findById(stockId)
+		Inventory stock = stockrepository.findById(stockId)
 	                .orElseThrow(() -> new IllegalArgumentException("Stock not found with id: " + stockId));
 
-	        int remainingcount=stock.getTotalquantity();
+		int remainingcount=stock.getTotalquantity();
 
-	        if (remainingcount <= neededcount) {
-	        	stock.setMessage("re-order");
-	        	stockrepository.save(stock);
-	            return String.format(message, stockId, remainingcount);
-	        } else {
-	        	stock.setMessage("enough stock");
-	        	stockrepository.save(stock);
-	            return "No reorder needed for this item.";
-	        }
-	    }
+		if (remainingcount <= neededcount) {
+			stock.setMessage("re-order");
+			stockrepository.save(stock);
+			return String.format(message, stockId, remainingcount);
+		} else {
+			stock.setMessage("enough stock");
+			stockrepository.save(stock);
+			return "No reorder needed for this item.";
+		}
+	}
 
 }
