@@ -51,7 +51,7 @@ public class InventoryController {
     }
 	
 	
-	@PostMapping("/usage")
+	@PostMapping("/usaged/stock/count")
     public ResponseEntity<String> updateStock(@RequestBody InventoryRequest request) {
         stockservice.updateStock(request);
         return ResponseEntity.ok("Stock updated based on usage successfully");
