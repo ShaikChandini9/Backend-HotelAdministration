@@ -15,7 +15,7 @@ public class InventoryService {
 	@Autowired
 	InventoryRepository stockrepository;
 	
-	public void stock(InventoryRequest stockrequest) {
+	public void addingstock(InventoryRequest stockrequest) {
 		
 		Inventory stock=new Inventory();
 		stock.setStockid(stockrequest.getStockid());
@@ -28,14 +28,14 @@ public class InventoryService {
 		return stockrepository.findAll();
 	}
 	
-	public void addstock(String itemname,int quantity) {
-		
-		Inventory inventory=stockrepository.findByItemname(itemname);
-		int currentquantity=inventory.getQuantity();
-		int updatecount=currentquantity+quantity;
-		inventory.setQuantity(updatecount);
-		stockrepository.save(inventory);
-	}
+//	public void addstock(String itemname,int quantity) {
+//
+//		Inventory inventory=stockrepository.findByItemname(itemname);
+//		int currentquantity=inventory.getQuantity();
+//		int updatecount=currentquantity+quantity;
+//		inventory.setQuantity(updatecount);
+//		stockrepository.save(inventory);
+//	}
 	
 	 public void updateStock(InventoryRequest stockRequest) {
 		    Long stockId = stockRequest.getStockid();

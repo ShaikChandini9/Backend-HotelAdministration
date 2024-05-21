@@ -29,7 +29,7 @@ public class InventoryController {
 	@PostMapping("/stock")
 	public ResponseEntity stock(@RequestBody InventoryRequest stockrequest) {
 	
-		stockservice.stock(stockrequest);
+		stockservice.addingstock(stockrequest);
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	
