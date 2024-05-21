@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.Hotelmanagement.model.Inventory;
 
 @Repository
-public interface InventoryRepository extends JpaRepository<Inventory, String> {
-	 //Inventory findBystockid(Long id);
+public interface InventoryRepository extends JpaRepository<Inventory, Long> {
+	 Inventory findBystockid(Long id);
 	 Inventory findByItemname(String itemname);
 }

@@ -44,23 +44,23 @@ public class InventoryController {
 		stockservice.addstock(itemname, quantity);
 		return ResponseEntity.ok("Added sucessfully");
 	}
-//	@GetMapping("/remaining/{stockId}")
-//    public ResponseEntity getRemainingStockCount(@PathVariable Long stockId) {
-//        stockservice.getStockCount(stockId);
-//        return ResponseEntity.ok("updated sucessfully");
-//    }
+	@GetMapping("/remaining/{stockId}")
+    public ResponseEntity getRemainingStockCount(@PathVariable Long stockId) {
+        stockservice.getStockCount(stockId);
+        return ResponseEntity.ok("updated sucessfully");
+    }
 	
 	
-//	@PostMapping("/usage")
-//    public ResponseEntity<String> updateStock(@RequestBody InventoryRequest request) {
-//        stockservice.updateStock(request);
-//        return ResponseEntity.ok("Stock updated based on usage successfully");
-//    }
+	@PostMapping("/usage")
+    public ResponseEntity<String> updateStock(@RequestBody InventoryRequest request) {
+        stockservice.updateStock(request);
+        return ResponseEntity.ok("Stock updated based on usage successfully");
+    }
 
 	
-//	@GetMapping("/{stockId}/reorder-message")
-//    public ResponseEntity<String> getReorderMessage(@PathVariable Long stockId) {
-//        String reorderMessage = stockservice.getReorderMessage(stockId);
-//        return ResponseEntity.ok(reorderMessage);
-//    }
+	@GetMapping("/{stockId}/reorder-message")
+    public ResponseEntity<String> getReorderMessage(@PathVariable Long stockId) {
+        String reorderMessage = stockservice.getReorderMessage(stockId);
+        return ResponseEntity.ok(reorderMessage);
+    }
 }

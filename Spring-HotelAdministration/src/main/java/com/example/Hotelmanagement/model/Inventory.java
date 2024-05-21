@@ -41,29 +41,29 @@ public class Inventory {
 	}
 	
 
-//	private int usedquantity;
-//	public int getUsedquantity() {
-//		return usedquantity;
-//	}
-//	public void setUsedquantity(int usedquantity) {
-//		this.usedquantity = usedquantity;
-//	}
+	private int usedquantity;
+	public int getUsedquantity() {
+		return usedquantity;
+	}
+	public void setUsedquantity(int usedquantity) {
+		this.usedquantity = usedquantity;
+	}
 	
-//	private int totalquantity;
-//	public int getTotalquantity() {
-//		return totalquantity;
-//	}
-//	public void setTotalquantity(int totalquantity) {
-//		this.totalquantity = totalquantity;
-//	}
+	private int totalquantity;
+	public int getTotalquantity() {
+		return totalquantity;
+	}
+	public void setTotalquantity(int totalquantity) {
+		this.totalquantity = totalquantity;
+	}
 	
-//	private String message;
-//	public String getMessage() {
-//		return message;
-//	}
-//	public void setMessage(String message) {
-//		this.message = message;
-//	}
+	private String message;
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	
 	
 	
