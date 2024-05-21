@@ -34,7 +34,6 @@ public class InventoryController {
 	}
 	
 	@GetMapping("/all")
-	
 	public List<Inventory> getallitems(){
 		return stockservice.findallitems();
 	}
@@ -44,23 +43,23 @@ public class InventoryController {
 		stockservice.addingstockqunantity(itemname, quantity);
 		return ResponseEntity.ok("Added sucessfully");
 	}
+
 	@GetMapping("/remaining/{stockId}")
     public ResponseEntity getRemainingStockCount(@PathVariable Long stockId) {
         stockservice.getStockCount(stockId);
         return ResponseEntity.ok("updated sucessfully");
     }
-	
-	
+
 	@PostMapping("/usaged/stock/count")
     public ResponseEntity<String> updateStock(@RequestBody InventoryRequest request) {
         stockservice.updateStock(request);
         return ResponseEntity.ok("Stock updated based on usage successfully");
     }
 
-	
 	@GetMapping("/{stockId}/reorder-message")
     public ResponseEntity<String> getReorderMessage(@PathVariable Long stockId) {
         String reorderMessage = stockservice.getReorderMessage(stockId);
         return ResponseEntity.ok(reorderMessage);
     }
+    
 }
