@@ -20,7 +20,7 @@ public class InventoryService {
 		Inventory stock=new Inventory();
 		stock.setStockid(stockrequest.getStockid());
 		stock.setItemname(stockrequest.getItemname());
-		stock.setQuantity(stockrequest.getQuantity());
+		stock.setPreviouscount(stockrequest.getQuantity());
 		stockrepository.save(stock);
 	}
 	
@@ -31,7 +31,7 @@ public class InventoryService {
 	public void addingstockqunantity(String itemname,int quantity) {
 
 		Inventory inventory=stockrepository.findByItemname(itemname);
-		int currentquantity=inventory.getQuantity();
+		int currentquantity=inventory.getPreviouscount();
 		int updatecount=currentquantity+quantity;
 		//inventory.setQuantity(updatecount);
 		inventory.setUpdatequantity(updatecount);
@@ -54,7 +54,7 @@ public class InventoryService {
 	        Inventory stock = stockrepository.findById(stockId)
 	                .orElseThrow(() -> new IllegalArgumentException("Stock not found with id: " + stockId));
 
-	        int Quantity = stock.getQuantity();
+	        int Quantity = stock.getPreviouscount();
 	        int usedQuantity = stock.getUsedquantity();
 	        int totalQuantity=Quantity - usedQuantity;
 	        stock.setTotalquantity(totalQuantity);

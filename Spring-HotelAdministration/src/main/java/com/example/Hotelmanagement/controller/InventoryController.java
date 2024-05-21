@@ -39,8 +39,8 @@ public class InventoryController {
 		return stockservice.findallitems();
 	}
 	
-	@PostMapping("/add/stockquantity")
-	public ResponseEntity<String> addStock(String itemname,@RequestParam int quantity) {
+	@PostMapping("/add/addstockquantity")
+	public ResponseEntity<String> addingStockQuantity(String itemname,@RequestParam int quantity) {
 		stockservice.addingstockqunantity(itemname, quantity);
 		return ResponseEntity.ok("Added sucessfully");
 	}

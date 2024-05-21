@@ -20,7 +20,7 @@ public class Inventory {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long stockid;
 	private String itemname;
-	private int quantity;
+	private int previouscount;
 	public Long getStockid() {
 		return stockid;
 	}
@@ -33,13 +33,14 @@ public class Inventory {
 	public void setItemname(String itemname) {
 		this.itemname = itemname;
 	}
-	public int getQuantity() {
-		return quantity;
+
+	public int getPreviouscount() {
+		return previouscount;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+
+	public void setPreviouscount(int previouscount) {
+		this.previouscount = previouscount;
 	}
-	
 
 	private int usedquantity;
 	public int getUsedquantity() {
