@@ -64,7 +64,14 @@ public class Inventory {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
-	
+
+	public int updatequantity;
+
+	public int getUpdatequantity() {
+		return updatequantity;
+	}
+
+	public void setUpdatequantity(int updatequantity) {
+		this.updatequantity = updatequantity;
+	}
 }
