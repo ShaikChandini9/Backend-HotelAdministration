@@ -33,7 +33,7 @@ public class InventoryService {
 		Inventory inventory=stockrepository.findByItemname(itemname);
 		int currentquantity=inventory.getQuantity();
 		int updatecount=currentquantity+quantity;
-		inventory.setQuantity(updatecount);
+		//inventory.setQuantity(updatecount);
 		inventory.setUpdatequantity(updatecount);
 		stockrepository.save(inventory);
 	}
